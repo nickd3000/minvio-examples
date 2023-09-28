@@ -1,10 +1,10 @@
-package com.physmo.minvioexamples;
+package com.physmo.minvioexamples.minvioapp;
 
-import com.physmo.minvio.BasicDisplay;
 import com.physmo.minvio.BasicDisplayAwt;
+import com.physmo.minvio.DrawingContext;
 import com.physmo.minvio.MinvioApp;
 
-import java.awt.*;
+import java.awt.Color;
 import java.io.File;
 
 class SaveScreenshotExample extends MinvioApp {
@@ -18,19 +18,19 @@ class SaveScreenshotExample extends MinvioApp {
     }
 
     @Override
-    public void draw(BasicDisplay bd, double delta) {
-        bd.cls(Color.LIGHT_GRAY);
-        bd.setDrawColor(Color.WHITE);
-        bd.drawFilledRect(75, 75, 50, 50);
-        bd.setDrawColor(Color.BLUE);
-        bd.drawCircle(100, 100, 70);
-        bd.drawText("X:" + bd.getMouseX() + " Y:" + bd.getMouseY(), 10, 190);
-        bd.drawText("Tick :" + getFps(), 10, 160);
+    public void draw(DrawingContext dc, double delta) {
+        dc.cls(Color.LIGHT_GRAY);
+        dc.setDrawColor(Color.WHITE);
+        dc.drawFilledRect(75, 75, 50, 50);
+        dc.setDrawColor(Color.BLUE);
+        dc.drawCircle(100, 100, 70);
+        dc.drawText("X:" + getMouseX() + " Y:" + getMouseY(), 10, 190);
+        dc.drawText("Tick :" + getFps(), 10, 160);
 
-        if (saved == false) {
+        if (!saved) {
             String filePath = "";
-            filePath = System.getProperty("user.home") + File.separator + bd.getTitle() + ".png";
-            bd.saveScreenshot(filePath);
+            filePath = System.getProperty("user.home") + File.separator + getTitle() + ".png";
+            saveScreenshot(filePath);
 
             // You could also use this version which saves to the
             // user home folder with the app name as the file name.

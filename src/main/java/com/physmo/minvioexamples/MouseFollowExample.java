@@ -2,8 +2,9 @@ package com.physmo.minvioexamples;
 
 import com.physmo.minvio.BasicDisplay;
 import com.physmo.minvio.BasicDisplayAwt;
+import com.physmo.minvio.DrawingContext;
 
-import java.awt.*;
+import java.awt.Color;
 
 class MouseFollowExample {
 
@@ -14,17 +15,18 @@ class MouseFollowExample {
         BasicDisplay bd = new BasicDisplayAwt(width, height);
 
         bd.setTitle("Mouse Follow Example");
+        DrawingContext dc = bd.getDrawingContext();
 
         while (true) {
 
-            if (!bd.getMouseButtonLeft()) bd.cls(Color.black); // Don't clear screen when mouse clicked.
+            if (!bd.getMouseButtonLeft()) dc.cls(Color.black); // Don't clear screen when mouse clicked.
 
             double targetX = bd.getMouseX();
             x += (targetX - x) * speed;
             double targetY = bd.getMouseY();
             y += (targetY - y) * speed;
 
-            bd.drawCircle(x, y, 20);
+            dc.drawCircle(x, y, 20);
 
             bd.repaint(60);
         }

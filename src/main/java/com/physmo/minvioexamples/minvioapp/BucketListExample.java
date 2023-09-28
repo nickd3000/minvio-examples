@@ -1,11 +1,17 @@
-package com.physmo.minvioexamples;
+package com.physmo.minvioexamples.minvioapp;
 
+import com.physmo.minvio.BasicDisplay;
+import com.physmo.minvio.BasicDisplayAwt;
+import com.physmo.minvio.DrawingContext;
+import com.physmo.minvio.MinvioApp;
 import com.physmo.minvio.Point;
-import com.physmo.minvio.*;
+import com.physmo.minvio.PointDynamic;
+import com.physmo.minvio.Position;
+import com.physmo.minvio.Utils;
 import com.physmo.minvio.utils.BasicUtils;
 import com.physmo.minvio.utils.BucketList;
 
-import java.awt.*;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,31 +61,32 @@ public class BucketListExample extends MinvioApp {
     }
 
     @Override
-    public void draw(BasicDisplay bd, double delta) {
-        if (bd.getMouseButtonLeft())
-            bd.cls(new Color(14, 3, 6, 5));
+    public void draw(DrawingContext dc, double delta) {
+
+        if (getBasicDisplay().getMouseButtonLeft())
+            dc.cls(new Color(14, 3, 6, 5));
         else
-            bd.cls(Color.BLACK);
+            dc.cls(Color.BLACK);
 
-        bd.setDrawColor(Color.lightGray);
+        dc.setDrawColor(Color.lightGray);
 
 
-        tick(bd);
+        tick(getBasicDisplay());
 
 
         // Draw summary grid
         List<Integer[]> bucketSummary = bucketList.getBucketSummary();
         int cellSize = bucketList.getCellSize();
-        bd.setDrawColor(new Color(64, 31, 31));
+        dc.setDrawColor(new Color(64, 31, 31));
         for (Integer[] integers : bucketSummary) {
             if (integers[2] == 0) continue;
-            bd.drawRect(integers[0] - (cellSize / 2), integers[1] - (cellSize / 2), cellSize, cellSize);
+            dc.drawRect(integers[0] - (cellSize / 2), integers[1] - (cellSize / 2), cellSize, cellSize);
         }
 
         // Draw particles
-        bd.setDrawColor(new Color(230, 215, 186));
+        dc.setDrawColor(new Color(230, 215, 186));
         for (Position point : points) {
-            bd.drawPoint((int) point.x, (int) point.y);
+            dc.drawPoint((int) point.x, (int) point.y);
         }
     }
 
@@ -101,7 +108,7 @@ public class BucketListExample extends MinvioApp {
                     double dx = (p2.x - p.x) / distance;
                     double dy = (p2.y - p.y) / distance;
                     double force = (2.0 / (distance * distance)) * forceScale;
-                    force = BasicDisplay.clamp(0, forceMax, force);
+                    force = Utils.clamp(0, forceMax, force);
                     if (distance <= 3) {
                         force = 0;
                     }

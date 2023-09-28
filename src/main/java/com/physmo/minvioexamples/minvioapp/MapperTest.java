@@ -1,11 +1,11 @@
-package com.physmo.minvioexamples;
+package com.physmo.minvioexamples.minvioapp;
 
-import com.physmo.minvio.BasicDisplay;
 import com.physmo.minvio.BasicDisplayAwt;
+import com.physmo.minvio.DrawingContext;
 import com.physmo.minvio.MinvioApp;
 import com.physmo.minvio.utils.BasicUtils;
 
-import java.awt.*;
+import java.awt.Color;
 
 class MapperTest extends MinvioApp {
 
@@ -18,19 +18,19 @@ class MapperTest extends MinvioApp {
     }
 
     @Override
-    public void draw(BasicDisplay bd, double delta) {
-        double x = bd.getMouseX();
-        double y = bd.getMouseY();
+    public void draw(DrawingContext dc, double delta) {
+        double x = getMouseX();
+        double y = getMouseY();
 
         double mappedX = BasicUtils.mapper(x, 0, 400, 100, 300);
         double mappedY = BasicUtils.mapper(y, 0, 400, 100, 300);
 
-        bd.cls(backgroundColour);
-        bd.setDrawColor(foregroundColour);
-        bd.drawRect(0, 0, 400 - 1, 400 - 1);
-        bd.drawRect(100, 100, 200, 200);
-        bd.drawLine(200, 200, mappedX, mappedY, 2);
-        bd.drawCircle(mappedX, mappedY, 10);
+        dc.cls(backgroundColour);
+        dc.setDrawColor(foregroundColour);
+        dc.drawRect(0, 0, 400 - 1, 400 - 1);
+        dc.drawRect(100, 100, 200, 200);
+        dc.drawLine(200, 200, mappedX, mappedY, 2);
+        dc.drawCircle(mappedX, mappedY, 10);
 
     }
 }

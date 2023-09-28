@@ -1,11 +1,12 @@
-package com.physmo.minvioexamples;
+package com.physmo.minvioexamples.minvioapp;
 
 import com.physmo.minvio.BasicDisplay;
 import com.physmo.minvio.BasicDisplayAwt;
+import com.physmo.minvio.DrawingContext;
 import com.physmo.minvio.MinvioApp;
 import com.physmo.minvio.utils.Gradient;
 
-import java.awt.*;
+import java.awt.Color;
 
 public class GradientExample extends MinvioApp {
 
@@ -27,16 +28,16 @@ public class GradientExample extends MinvioApp {
     }
 
     @Override
-    public void draw(BasicDisplay bd, double delta) {
+    public void draw(DrawingContext dc, double delta) {
 
-        for (int y = 0; y < bd.getHeight(); y++) {
-            Color color = gradient.getColor((double) y / (double) bd.getHeight());
-            bd.setDrawColor(color);
-            bd.drawFilledRect(0, y, bd.getWidth(), 1);
+        for (int y = 0; y < dc.getHeight(); y++) {
+            Color color = gradient.getColor((double) y / (double) dc.getHeight());
+            dc.setDrawColor(color);
+            dc.drawFilledRect(0, y, dc.getWidth(), 1);
 
             // Draw the sun for fun.
-            if (y == bd.getHeight() / 2) {
-                bd.drawFilledCircle(bd.getHeight() / 2, bd.getHeight() / 2, 50);
+            if (y == dc.getHeight() / 2) {
+                dc.drawFilledCircle(dc.getHeight() / 2, dc.getHeight() / 2, 50);
             }
         }
 

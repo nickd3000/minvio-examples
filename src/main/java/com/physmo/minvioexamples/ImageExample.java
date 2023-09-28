@@ -2,8 +2,9 @@ package com.physmo.minvioexamples;
 
 import com.physmo.minvio.BasicDisplay;
 import com.physmo.minvio.BasicDisplayAwt;
+import com.physmo.minvio.DrawingContext;
 
-import java.awt.*;
+import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -15,6 +16,7 @@ class ImageExample {
     public static void main(String... args) {
 
         BasicDisplay bd = new BasicDisplayAwt(400, 400);
+        DrawingContext dc = bd.getDrawingContext();
 
         BufferedImage image = null;
         try {
@@ -24,22 +26,22 @@ class ImageExample {
         }
 
         bd.setTitle("Image Example");
-        bd.setFont(10);
+        dc.setFont(10);
 
         while (true) {
-            bd.cls(Color.lightGray);
+            dc.cls(Color.lightGray);
 
-            bd.drawImage(image, 0, 0);
-            bd.drawImage(image, image.getWidth(), 0, 100, 100);
+            dc.drawImage(image, 0, 0);
+            dc.drawImage(image, image.getWidth(), 0, 100, 100);
 
-            ringOfImages(bd, image);
+            ringOfImages(dc, image);
 
             bd.repaint(60);
         }
     }
 
     // Draw many small scaled images in a rotating ring formation.
-    public static void ringOfImages(BasicDisplay bd, BufferedImage image) {
+    public static void ringOfImages(DrawingContext dc, BufferedImage image) {
         t += 0.01;
 
         int numSprites = 30 * 5;
@@ -48,7 +50,7 @@ class ImageExample {
         for (int i = 0; i < numSprites; i++) {
             int x = (int) (Math.sin(t + i * angleSpan) * radius);
             int y = (int) (Math.cos(t + i * angleSpan) * radius);
-            bd.drawImage(image, x + (bd.getWidth() / 2) - 16, y + (bd.getHeight() / 2) - 16, 32, 32);
+            dc.drawImage(image, x + (dc.getWidth() / 2) - 16, y + (dc.getHeight() / 2) - 16, 32, 32);
         }
 
     }

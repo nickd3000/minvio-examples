@@ -2,7 +2,9 @@ package com.physmo.minvioexamples.gallery;
 
 import com.physmo.minvio.BasicDisplay;
 import com.physmo.minvio.BasicDisplayAwt;
+import com.physmo.minvio.DrawingContext;
 import com.physmo.minvio.MinvioApp;
+import com.physmo.minvio.Utils;
 
 import java.awt.*;
 
@@ -21,12 +23,13 @@ public class GasketApp extends MinvioApp {
 
     @Override
     public void init(BasicDisplay bd) {
-        bd.cls(Color.darkGray);
-        bd.setDrawColor(Color.BLUE);
+        DrawingContext dc = bd.getDrawingContext();
+        dc.cls(Color.darkGray);
+        dc.setDrawColor(Color.BLUE);
     }
 
     @Override
-    public void draw(BasicDisplay bd, double delta) {
+    public void draw(DrawingContext dc, double delta) {
         for (int i = 0; i < 50; i++) {
             loopCount++;
 
@@ -36,11 +39,11 @@ public class GasketApp extends MinvioApp {
             y = (y + pointList[(pointIndex * 2) + 1]) / 2;
 
             // Draw the point.
-            bd.drawFilledRect((int) (x * 400), (int) (y * 400), 2, 2);
+            dc.drawFilledRect((int) (x * 400), (int) (y * 400), 2, 2);
 
             // Chose a random distinct colour every so often.
             if (loopCount % 50000 == 0)
-                bd.setDrawColor(bd.getDistinctColor((int) (Math.random() * 100), 0.7));
+                dc.setDrawColor(Utils.getDistinctColor((int) (Math.random() * 100), 0.7));
         }
     }
 

@@ -1,21 +1,23 @@
-package com.physmo.minvioexamples;
+package com.physmo.minvioexamples.minvioapp;
 
-import com.physmo.minvio.BasicDisplay;
 import com.physmo.minvio.BasicDisplayAwt;
+import com.physmo.minvio.DrawingContext;
 import com.physmo.minvio.MinvioApp;
 
-import java.awt.*;
+import java.awt.Color;
 
-import static java.awt.event.KeyEvent.*;
+import static java.awt.event.KeyEvent.VK_A;
+import static java.awt.event.KeyEvent.VK_D;
+import static java.awt.event.KeyEvent.VK_S;
+import static java.awt.event.KeyEvent.VK_W;
 
 class KeyboardExample extends MinvioApp {
 
+    private static final double force = 500;
+    private static final double friction = 1;
     Color colorBackGround = new Color(79, 79, 79);
     Color colorText1 = new Color(255, 147, 2);
     Color colorText2 = new Color(127, 127, 127);
-
-    private static final double force = 500;
-    private static final double friction = 1;
     // Set starting position and zero velocity.
     double x = 170, y = 200, dx = 0, dy = 0;
 
@@ -25,10 +27,10 @@ class KeyboardExample extends MinvioApp {
     }
 
     @Override
-    public void draw(BasicDisplay bd, double delta) {
+    public void draw(DrawingContext dc, double delta) {
 
-        bd.tickInput();
-        int[] keyStates = bd.getKeyState();
+        getBasicDisplay().tickInput();
+        int[] keyStates = getBasicDisplay().getKeyState();
 
         if (keyStates[VK_W] != 0) {
             dy -= force * delta;
@@ -70,12 +72,12 @@ class KeyboardExample extends MinvioApp {
         }
 
         // Clear screen.
-        bd.cls(colorBackGround);
+        dc.cls(colorBackGround);
 
         // Draw text.
-        bd.setDrawColor(colorText1);
-        bd.drawText("WASD", (int) x, (int) y);
-        bd.setDrawColor(colorText2);
-        bd.drawText("Press the WASD keys to move", 10, 30);
+        dc.setDrawColor(colorText1);
+        dc.drawText("WASD", (int) x, (int) y);
+        dc.setDrawColor(colorText2);
+        dc.drawText("Press the WASD keys to move", 10, 30);
     }
 }

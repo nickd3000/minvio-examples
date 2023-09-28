@@ -1,12 +1,13 @@
-package com.physmo.minvioexamples;
+package com.physmo.minvioexamples.minvioapp;
 
 import com.physmo.minvio.BasicDisplay;
 import com.physmo.minvio.BasicDisplayAwt;
+import com.physmo.minvio.DrawingContext;
 import com.physmo.minvio.MinvioApp;
 import com.physmo.minvio.Point;
 import com.physmo.minvio.utils.BasicUtils;
 
-import java.awt.*;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,16 +34,16 @@ public class FindClosestPointInListExample extends MinvioApp {
     }
 
     @Override
-    public void draw(BasicDisplay bd, double delta) {
-        bd.cls(backgroundColor);
+    public void draw(DrawingContext dc, double delta) {
+        dc.cls(backgroundColor);
 
-        int closestPointIndex = BasicUtils.findClosestPointInList(points, bd.getMousePoint(), 400);
+        int closestPointIndex = BasicUtils.findClosestPointInList(points, getBasicDisplay().getMousePoint(), 400);
 
         for (int i = 0; i < points.size(); i++) {
-            if (i == closestPointIndex) bd.setDrawColor(col2);
-            else bd.setDrawColor(col1);
+            if (i == closestPointIndex) dc.setDrawColor(col2);
+            else dc.setDrawColor(col1);
 
-            bd.drawFilledCircle(points.get(i), 5);
+            dc.drawFilledCircle(points.get(i), 5);
         }
 
     }

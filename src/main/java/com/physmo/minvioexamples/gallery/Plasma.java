@@ -2,6 +2,7 @@ package com.physmo.minvioexamples.gallery;
 
 import com.physmo.minvio.BasicDisplay;
 import com.physmo.minvio.BasicDisplayAwt;
+import com.physmo.minvio.DrawingContext;
 import com.physmo.minvio.MinvioApp;
 import com.physmo.minvio.utils.Gradient;
 
@@ -29,31 +30,31 @@ public class Plasma extends MinvioApp {
     }
 
     @Override
-    public void draw(BasicDisplay bd, double delta) {
+    public void draw(DrawingContext dc, double delta) {
         int cellSize = 5;
         double scale = 0.05;
         scrollPosX += delta * 0.5;
         scrollPosY += delta * 0.2;
 
-        for (int y = 0; y < bd.getHeight() / cellSize; y++) {
-            for (int x = 0; x < bd.getWidth() / cellSize; x++) {
+        for (int y = 0; y < dc.getHeight() / cellSize; y++) {
+            for (int x = 0; x < dc.getWidth() / cellSize; x++) {
 
                 double noise = noise(scrollPosX + (x * scale), scrollPosY + (y * scale), scrollPosX);
 
-                setColourFromNoise(bd, noise);
+                setColourFromNoise(dc, noise);
 
-                bd.drawFilledRect(x * cellSize, y * cellSize, cellSize, cellSize);
+                dc.drawFilledRect(x * cellSize, y * cellSize, cellSize, cellSize);
             }
         }
 
     }
 
-    public void setColourFromNoise(BasicDisplay bd, double noise) {
+    public void setColourFromNoise(DrawingContext dc, double noise) {
         // Noise value is in range -1..1 - convert to 0..1
         // We can use the BasicUtils.mapper helper for this.
         // noise = (1.0 + noise) / 2.0;
         noise = mapper(noise, -1, 1, 0, 1);
         Color col = gradient.getColor(noise);
-        bd.setDrawColor(col);
+        dc.setDrawColor(col);
     }
 }

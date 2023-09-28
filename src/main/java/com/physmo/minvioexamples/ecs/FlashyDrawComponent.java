@@ -1,6 +1,8 @@
 package com.physmo.minvioexamples.ecs;
 
 import com.physmo.minvio.BasicDisplay;
+import com.physmo.minvio.DrawingContext;
+import com.physmo.minvio.Utils;
 import com.physmo.minvio.utils.ecs.Component;
 import com.physmo.minvio.utils.ecs.Entity;
 
@@ -13,10 +15,10 @@ public class FlashyDrawComponent extends Component {
     }
 
     @Override
-    public void tick(BasicDisplay bd, Entity e, double d) {
-        bd.setDrawColor(bd.getDistinctColor(i++, 0.6));
+    public void tick(DrawingContext dc, Entity e, double d) {
+        dc.setDrawColor(Utils.getDistinctColor(i++, 0.6));
 
         //bd.drawFilledCircle(e.position.x, e.position.y, 20);
-        bd.drawFilledRect((int) e.position.x - 10, (int) e.position.y - 10, 20, 20);
+        dc.drawFilledRect((int) e.position.x - 10, (int) e.position.y - 10, 20, 20);
     }
 }

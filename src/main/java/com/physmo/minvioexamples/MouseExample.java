@@ -2,9 +2,11 @@ package com.physmo.minvioexamples;
 
 import com.physmo.minvio.BasicDisplay;
 import com.physmo.minvio.BasicDisplayAwt;
+import com.physmo.minvio.DrawingContext;
+import com.physmo.minvio.Utils;
 import com.physmo.minvio.utils.BasicUtils;
 
-import java.awt.*;
+import java.awt.Color;
 
 // TODO: mouse clicks... is this supported yet?
 class MouseExample {
@@ -14,12 +16,13 @@ class MouseExample {
         int width = 400;
         int height = 400;
         BasicDisplay bd = new BasicDisplayAwt(width, height);
+        DrawingContext dc = bd.getDrawingContext();
 
         bd.setTitle("Mouse Example");
 
         // Clear the screen to dark gray.
-        bd.cls(Color.black);
-        bd.setDrawColor(Color.BLUE);
+        dc.cls(Color.black);
+        dc.setDrawColor(Color.BLUE);
 
         int prevX = bd.getMouseX();
         int prevY = bd.getMouseY();
@@ -33,21 +36,21 @@ class MouseExample {
             dst = BasicUtils.distance(prevX, prevY, bd.getMouseX(), bd.getMouseY());
 
             // Draw the point.
-            bd.drawFilledCircle(bd.getMouseX(), bd.getMouseY(), dst / 2);
+            dc.drawFilledCircle(bd.getMouseX(), bd.getMouseY(), dst / 2);
 
             // Chose a random distinct colour every so often.
             count++;
-            bd.setDrawColor(bd.getDistinctColor(count, 0.7));
+            dc.setDrawColor(Utils.getDistinctColor(count, 0.7));
 
             prevX = bd.getMouseX();
             prevY = bd.getMouseY();
 
             // Fade
-            bd.cls(new Color(0, 0, 0, 10));
+            dc.cls(new Color(0, 0, 0, 10));
 
             // Clear on mouse click.
             if (bd.getMouseButtonLeft()) {
-                bd.cls(Color.black);
+                dc.cls(Color.black);
             }
 
         }

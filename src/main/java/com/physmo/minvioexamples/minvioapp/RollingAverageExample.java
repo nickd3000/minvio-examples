@@ -1,11 +1,11 @@
-package com.physmo.minvioexamples;
+package com.physmo.minvioexamples.minvioapp;
 
-import com.physmo.minvio.BasicDisplay;
 import com.physmo.minvio.BasicDisplayAwt;
+import com.physmo.minvio.DrawingContext;
 import com.physmo.minvio.MinvioApp;
 import com.physmo.minvio.utils.RollingAverage;
 
-import java.awt.*;
+import java.awt.Color;
 
 public class RollingAverageExample extends MinvioApp {
 
@@ -19,10 +19,11 @@ public class RollingAverageExample extends MinvioApp {
     }
 
     @Override
-    public void draw(BasicDisplay bd, double delta) {
-        bd.cls(Color.DARK_GRAY);
-        rax.add(bd.getMouseX());
-        ray.add(bd.getMouseY());
-        bd.drawFilledCircle(rax.getAverage(), ray.getAverage(), 10);
+    public void draw(DrawingContext dc, double delta) {
+        dc.cls(Color.DARK_GRAY);
+        rax.add(getMouseX());
+        ray.add(getBasicDisplay().getMouseY());
+        dc.setDrawColor(Color.BLUE);
+        dc.drawFilledCircle(rax.getAverage(), ray.getAverage(), 10);
     }
 }

@@ -1,10 +1,11 @@
-package com.physmo.minvioexamples;
+package com.physmo.minvioexamples.minvioapp;
 
-import com.physmo.minvio.BasicDisplay;
 import com.physmo.minvio.BasicDisplayAwt;
+import com.physmo.minvio.DrawingContext;
 import com.physmo.minvio.MinvioApp;
+import com.physmo.minvio.Utils;
 
-import java.awt.*;
+import java.awt.Color;
 
 /***
  * minvio provides support for generating unique colors, useful for quickly
@@ -18,22 +19,22 @@ class DistinctColorExample extends MinvioApp {
     }
 
     @Override
-    public void draw(BasicDisplay bd, double delta) {
+    public void draw(DrawingContext dc, double delta) {
         int numRows;
         int space;
         int halfSpace;
 
-        bd.cls(Color.GRAY);
-        numRows = 5 + (bd.getMouseX() / 20);
+        dc.cls(Color.GRAY);
+        numRows = 5 + (getMouseX() / 20);
         if (numRows < 1) numRows = 1;
         space = 400 / numRows;
         halfSpace = space / 2;
-        double saturation = ((double) bd.getMouseY() / (double) bd.getHeight());
+        double saturation = ((double) getMouseY() / (double) getHeight());
 
         for (int y = 0; y < numRows; y++) {
             for (int x = 0; x < numRows; x++) {
-                bd.setDrawColor(bd.getDistinctColor(x + (y * numRows), saturation));
-                bd.drawFilledCircle(halfSpace + x * space, halfSpace + y * space, halfSpace);
+                dc.setDrawColor(Utils.getDistinctColor(x + (y * numRows), saturation));
+                dc.drawFilledCircle(halfSpace + x * space, halfSpace + y * space, halfSpace);
             }
         }
     }

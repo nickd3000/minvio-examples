@@ -2,6 +2,7 @@ package com.physmo.minvioexamples.gallery;
 
 import com.physmo.minvio.BasicDisplay;
 import com.physmo.minvio.BasicDisplayAwt;
+import com.physmo.minvio.DrawingContext;
 import com.physmo.minvio.MinvioApp;
 import com.physmo.minvio.Point;
 import com.physmo.minvio.utils.AnchorManager;
@@ -34,11 +35,11 @@ public class Gasket2 extends MinvioApp {
 
 
     @Override
-    public void draw(BasicDisplay bd, double delta) {
-        bd.cls(background);
-        anchorManager.update(bd);
+    public void draw(DrawingContext dc, double delta) {
+        dc.cls(background);
+        anchorManager.update(getBasicDisplay());
 
-        bd.setDrawColor(new Color(0, 0, 0));
+        dc.setDrawColor(new Color(0, 0, 0));
 
         for (int i = 0; i < 15000; i++) {
             int ii = (int) (Math.random() * (double) anchorManager.getAnchors().size());
@@ -47,15 +48,15 @@ public class Gasket2 extends MinvioApp {
             floatingPoint.x = (floatingPoint.x + p2.x) / 2;
             floatingPoint.y = (floatingPoint.y + p2.y) / 2;
 
-            bd.drawFilledRect((int) floatingPoint.x, (int) floatingPoint.y, 2, 2);
+            dc.drawFilledRect((int) floatingPoint.x, (int) floatingPoint.y, 2, 2);
         }
 
-        bd.setDrawColor(new Color(225, 209, 118));
+        dc.setDrawColor(new Color(225, 209, 118));
         List<Point> anchors = anchorManager.getAnchors();
         for (int i = 0; i < anchors.size() - 1; i++) {
-            bd.drawLine(anchors.get(i), anchors.get(i + 1));
+            dc.drawLine(anchors.get(i), anchors.get(i + 1));
         }
 
-        anchorManager.draw(bd);
+        anchorManager.draw(dc);
     }
 }

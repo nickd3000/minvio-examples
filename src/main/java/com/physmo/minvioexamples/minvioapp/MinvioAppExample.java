@@ -1,10 +1,10 @@
-package com.physmo.minvioexamples;
+package com.physmo.minvioexamples.minvioapp;
 
-import com.physmo.minvio.BasicDisplay;
 import com.physmo.minvio.BasicDisplayAwt;
+import com.physmo.minvio.DrawingContext;
 import com.physmo.minvio.MinvioApp;
 
-import java.awt.*;
+import java.awt.Color;
 
 public class MinvioAppExample extends MinvioApp {
 
@@ -16,11 +16,11 @@ public class MinvioAppExample extends MinvioApp {
     }
 
     @Override
-    public void draw(BasicDisplay bd, double delta) {
+    public void draw(DrawingContext dc, double delta) {
         x++;
         if (x > 200) x = 0;
-        bd.cls(new Color(207, 198, 179));
-        bd.setDrawColor(new Color(17, 52, 69, 215));
-        bd.drawText("Hello, World", x, 100);
+        dc.cls(new Color(207, 198, 179));
+        dc.setDrawColor(new Color(17, 52, 69, 215));
+        dc.drawText("Hello, World", x, 100);
     }
 }

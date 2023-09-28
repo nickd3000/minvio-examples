@@ -1,17 +1,18 @@
-package com.physmo.minvioexamples;
+package com.physmo.minvioexamples.minvioapp;
 
-import com.physmo.minvio.BasicDisplay;
 import com.physmo.minvio.BasicDisplayAwt;
+import com.physmo.minvio.DrawingContext;
 import com.physmo.minvio.MinvioApp;
+import com.physmo.minvio.Utils;
 import com.physmo.minvio.utils.Gradient;
 import com.physmo.minvio.utils.VoronoiNoise;
 
-import java.awt.*;
+import java.awt.Color;
 
 public class VoronoiNoiseExample extends MinvioApp {
 
     double time = 0;
-    Gradient gradient = new Gradient(Color.BLACK, Color.WHITE);
+    Gradient gradient = new Gradient(Color.BLUE, Color.YELLOW);
 
     public static void main(String... args) {
         MinvioApp app = new VoronoiNoiseExample();
@@ -19,21 +20,21 @@ public class VoronoiNoiseExample extends MinvioApp {
     }
 
     @Override
-    public void draw(BasicDisplay bd, double delta) {
+    public void draw(DrawingContext dc, double delta) {
         int cellSize = 2;
         double scale = 0.025;
         time += delta * 0.5;
 
-        for (int y = 0; y < bd.getHeight() / cellSize; y++) {
-            for (int x = 0; x < bd.getWidth() / cellSize; x++) {
+        for (int y = 0; y < dc.getHeight() / cellSize; y++) {
+            for (int x = 0; x < dc.getWidth() / cellSize; x++) {
 
                 double noise = VoronoiNoise.noise((x * scale), (y * scale), time);
 
-                noise = BasicDisplay.clamp(0, 1, noise);
+                noise = Utils.clamp(0, 1, noise);
 
-                bd.setDrawColor(gradient.getColor(noise));
+                dc.setDrawColor(gradient.getColor(noise));
 
-                bd.drawFilledRect(x * cellSize, y * cellSize, cellSize, cellSize);
+                dc.drawFilledRect(x * cellSize, y * cellSize, cellSize, cellSize);
             }
         }
 

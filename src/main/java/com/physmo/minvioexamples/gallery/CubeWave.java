@@ -2,6 +2,7 @@ package com.physmo.minvioexamples.gallery;
 
 import com.physmo.minvio.BasicDisplay;
 import com.physmo.minvio.BasicDisplayAwt;
+import com.physmo.minvio.DrawingContext;
 import com.physmo.minvio.MinvioApp;
 
 import java.awt.*;
@@ -29,19 +30,19 @@ class CubeWave extends MinvioApp {
     }
 
     @Override
-    public void draw(BasicDisplay bd, double delta) {
-        bd.cls(backCol);
+    public void draw(DrawingContext dc, double delta) {
+        dc.cls(backCol);
         time += delta * 2;
 
-        drawColumns(bd, 5, 200 + 45);
-        drawColumns(bd, 5, 200 - 45);
+        drawColumns(dc, 5, 200 + 45);
+        drawColumns(dc, 5, 200 - 45);
     }
 
-    public static void drawColumns(BasicDisplay bd, int xx, int yy) {
+    public static void drawColumns(DrawingContext dc, int xx, int yy) {
         double oblique = 0.5;
         int columnWidth = 30;
         int columnHeight = 30;
-        int gridSize = (bd.getWidth() / columnWidth) - 1;
+        int gridSize = (dc.getWidth() / columnWidth) - 1;
 
         for (int x = gridSize; x > 0; x--) {
             for (int y = 0; y < gridSize; y++) {
@@ -51,12 +52,12 @@ class CubeWave extends MinvioApp {
 
                 int h = (int) ((Math.sin(x / 2.0 + time) * 10) + (Math.cos(y / 1.5 + time) * 10));
                 h += (int) ((Math.cos(x / 3.0 + time) * 5) + (Math.sin(x / 2.5 + time) * 5));
-                drawColumn(bd, (xx + (x * (columnWidth / 2))) + (y * ((columnWidth / 2))), h + yy + p1 + p2, columnWidth, columnHeight);
+                drawColumn(dc, (xx + (x * (columnWidth / 2))) + (y * ((columnWidth / 2))), h + yy + p1 + p2, columnWidth, columnHeight);
             }
         }
     }
 
-    public static void drawColumn(BasicDisplay bd, int x, int y, int w, int h) {
+    public static void drawColumn(DrawingContext dc, int x, int y, int w, int h) {
         double oblique = 0.5; // 1==45 degree slopes.
         //    b      |
         // a     c   | drop (half width)*oblique
@@ -69,21 +70,21 @@ class CubeWave extends MinvioApp {
         int[] xPoints, yPoints;
 
         // Right.
-        bd.setDrawColor(rightCol);
+        dc.setDrawColor(rightCol);
         xPoints = new int[]{x + w, x + hw, x + hw, x + w, x + w};
         yPoints = new int[]{y + drop, y + drop * 2, y + h, y + h - drop, y + drop};
-        bd.drawFilledPolygon(xPoints, yPoints, 5);
+        dc.drawFilledPolygon(xPoints, yPoints, 5);
 
         // Left.
-        bd.setDrawColor(leftCol);
+        dc.setDrawColor(leftCol);
         xPoints = new int[]{x, x + hw, x + hw, x, x};
         yPoints = new int[]{y + drop, y + drop * 2, y + h, y + h - drop, y + drop};
-        bd.drawFilledPolygon(xPoints, yPoints, 5);
+        dc.drawFilledPolygon(xPoints, yPoints, 5);
 
         // Top.
-        bd.setDrawColor(topCol);
+        dc.setDrawColor(topCol);
         xPoints = new int[]{x, x + hw, x + w, x + hw, x};
         yPoints = new int[]{y + drop, y, y + drop, y + drop * 2, y + drop};
-        bd.drawFilledPolygon(xPoints, yPoints, 5);
+        dc.drawFilledPolygon(xPoints, yPoints, 5);
     }
 }

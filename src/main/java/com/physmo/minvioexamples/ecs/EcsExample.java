@@ -2,7 +2,9 @@ package com.physmo.minvioexamples.ecs;
 
 import com.physmo.minvio.BasicDisplay;
 import com.physmo.minvio.BasicDisplayAwt;
+import com.physmo.minvio.DrawingContext;
 import com.physmo.minvio.MinvioApp;
+import com.physmo.minvio.Utils;
 import com.physmo.minvio.utils.ecs.Entity;
 import com.physmo.minvio.utils.ecs.EntitySystem;
 
@@ -40,7 +42,7 @@ public class EcsExample extends MinvioApp {
             }
 
             if (i % 2 == 0) {
-                newEntity.addDrawComponent(new DrawComponent(bd.getDistinctColor(i, 1)));
+                newEntity.addDrawComponent(new DrawComponent(Utils.getDistinctColor(i, 1)));
                 newEntity.addComponent(new GravityComponent());
             } else {
                 newEntity.addDrawComponent(new FlashyDrawComponent());
@@ -53,12 +55,12 @@ public class EcsExample extends MinvioApp {
 
     @Override
     public void update(BasicDisplay bd, double delta) {
-        entitySystem.tickAll(bd, delta * bd.getMousePointNormalised().x);
+        entitySystem.tickAll(bd.getDrawingContext(), delta * bd.getMousePointNormalised().x);
     }
 
     @Override
-    public void draw(BasicDisplay bd, double delta) {
-        bd.cls(new Color(150, 150, 150, 89));
-        entitySystem.drawAll(bd, delta);
+    public void draw(DrawingContext dc, double delta) {
+        dc.cls(new Color(150, 150, 150, 89));
+        entitySystem.drawAll(dc, delta);
     }
 }

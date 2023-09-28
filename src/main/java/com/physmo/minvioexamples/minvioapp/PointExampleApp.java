@@ -1,12 +1,13 @@
-package com.physmo.minvioexamples;
+package com.physmo.minvioexamples.minvioapp;
 
 import com.physmo.minvio.BasicDisplay;
 import com.physmo.minvio.BasicDisplayAwt;
+import com.physmo.minvio.DrawingContext;
 import com.physmo.minvio.MinvioApp;
 import com.physmo.minvio.Point;
 import com.physmo.minvio.utils.BasicUtils;
 
-import java.awt.*;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,25 +35,25 @@ public class PointExampleApp extends MinvioApp {
     }
 
     @Override
-    public void draw(BasicDisplay bd, double delta) {
+    public void draw(DrawingContext dc, double delta) {
         // Get mouse position as a Point.
-        Point mousePos = bd.getMousePoint();
+        Point mousePos = getBasicDisplay().getMousePoint();
 
         // Clear window.
-        bd.cls(colBackground);
+        dc.cls(colBackground);
 
         // Draw lines.
-        bd.setDrawColor(colLines);
+        dc.setDrawColor(colLines);
         for (Point p : points) {
-            bd.drawLine(mousePos, p);
+            dc.drawLine(mousePos, p);
         }
 
         // Draw dots.
-        bd.setDrawColor(colDots);
+        dc.setDrawColor(colDots);
         for (Point p : points) {
-            bd.drawFilledCircle(p, 3);
+            dc.drawFilledCircle(p, 3);
         }
 
-        BasicUtils.drawCursorPosition(bd, 5, 5);
+        BasicUtils.drawCursorPosition(getBasicDisplay(), 5, 5);
     }
 }

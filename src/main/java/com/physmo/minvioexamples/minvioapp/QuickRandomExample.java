@@ -1,11 +1,11 @@
-package com.physmo.minvioexamples;
+package com.physmo.minvioexamples.minvioapp;
 
-import com.physmo.minvio.BasicDisplay;
 import com.physmo.minvio.BasicDisplayAwt;
+import com.physmo.minvio.DrawingContext;
 import com.physmo.minvio.MinvioApp;
 import com.physmo.minvio.utils.QuickRandom;
 
-import java.awt.*;
+import java.awt.Color;
 
 class QuickRandomExample extends MinvioApp {
 
@@ -16,15 +16,15 @@ class QuickRandomExample extends MinvioApp {
     }
 
     @Override
-    public void draw(BasicDisplay bd, double delta) {
-        bd.cls(Color.DARK_GRAY);
+    public void draw(DrawingContext dc, double delta) {
+        dc.cls(Color.DARK_GRAY);
         QuickRandom quickRandom = new QuickRandom(1);
-        for (int y = 0; y < bd.getWidth(); y++) {
-            for (int x = 0; x < bd.getHeight(); x++) {
-                quickRandom.setSeed((x + (y * 400)));
+        for (int y = 0; y < dc.getWidth(); y++) {
+            for (int x = 0; x < dc.getHeight(); x++) {
+                quickRandom.setSeed((x + (y * 400L)));
                 float v = (float) quickRandom.nextDouble();
-                bd.setDrawColor(new Color(v, v, v));
-                bd.drawPoint(x, y);
+                dc.setDrawColor(new Color(v, v, v));
+                dc.drawPoint(x, y);
             }
         }
 

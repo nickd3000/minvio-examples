@@ -12,7 +12,7 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <minvio.version>1.06</minvio.version>
+        <minvio.version>1.07-SNAPSHOT</minvio.version>
     </properties>
 
     <build>

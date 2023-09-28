@@ -2,6 +2,7 @@ package com.physmo.minvioexamples.gallery;
 
 import com.physmo.minvio.BasicDisplay;
 import com.physmo.minvio.BasicDisplayAwt;
+import com.physmo.minvio.DrawingContext;
 import com.physmo.minvio.MinvioApp;
 import com.physmo.minvio.utils.Gradient;
 import com.physmo.minvio.utils.MatrixDrawer;
@@ -43,10 +44,10 @@ class NoseStyles extends MinvioApp {
 
 
     @Override
-    public void draw(BasicDisplay bd, double delta) {
+    public void draw(DrawingContext dc, double delta) {
         time += delta;
 
-        matrixDrawer.draw(bd, 0, 0, 2, time, (x, y, a, d, t) -> {
+        matrixDrawer.draw(dc, 0, 0, 2, time, (x, y, a, d, t) -> {
             double xx = PerlinNoise.noise(x * 4, y * 4, t + 2.5);
             double yy = PerlinNoise.noise(x * 4, y * 4, t + 2.5);
             return PerlinNoise.noise((x + xx) * 2, (y + yy) * 2, t);
@@ -54,15 +55,15 @@ class NoseStyles extends MinvioApp {
             //return ((1.0 + Math.sin(t * 2 + a * 6)) + (1.0 + Math.cos(t * 5 + d * 6 + a * 3))) * 0.25;
         }, gradients.get(0));
 
-        matrixDrawer.draw(bd, 200, 0, 2, time, (x, y, a, d, t) -> {
+        matrixDrawer.draw(dc, 200, 0, 2, time, (x, y, a, d, t) -> {
             return (1.0 + Math.sin(a * 2 + d * 2 + (t * -3))) / 2;
         }, gradients.get(1));
 
-        matrixDrawer.draw(bd, 0, 200, 2, time, (x, y, a, d, t) -> {
+        matrixDrawer.draw(dc, 0, 200, 2, time, (x, y, a, d, t) -> {
             return (1.0 + Math.sin(x * 4 + d * 4 + t * 2 + y)) / 2;
         }, null); // We can supply null if we don't want to use a gradient.
 
-        matrixDrawer.draw(bd, 200, 200, 2, time, (x, y, a, d, t) -> {
+        matrixDrawer.draw(dc, 200, 200, 2, time, (x, y, a, d, t) -> {
             return ((Math.sin(t) + y + d) % 0.5) > 0.2 ? 1 : 0;
         }, gradients.get(3));
     }

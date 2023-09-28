@@ -1,7 +1,8 @@
-package com.physmo.minvioexamples;
+package com.physmo.minvioexamples.minvioapp;
 
 import com.physmo.minvio.BasicDisplay;
 import com.physmo.minvio.BasicDisplayAwt;
+import com.physmo.minvio.DrawingContext;
 import com.physmo.minvio.MinvioApp;
 import com.physmo.minvio.Point;
 import com.physmo.minvio.utils.BasicUtils;
@@ -27,10 +28,10 @@ class PointListProcessorExample extends MinvioApp {
     }
 
     @Override
-    public void draw(BasicDisplay bd, double delta) {
+    public void draw(DrawingContext dc, double delta) {
 
-        BasicUtils.pointListProcessor(bd, points, (bd1, p) -> {
-            bd.drawCircle(p.x, p.y, 5);
+        BasicUtils.pointListProcessor(dc, points, (bd1, p) -> {
+            dc.drawCircle(p.x, p.y, 5);
         });
 
     }
