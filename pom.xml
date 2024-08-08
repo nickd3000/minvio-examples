@@ -6,13 +6,13 @@
 
     <groupId>io.github.nickd3000</groupId>
     <artifactId>minvio-examples</artifactId>
-    <version>0.1.0</version>
+    <version>1.08</version>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <minvio.version>1.07-SNAPSHOT</minvio.version>
+        <minvio.version>1.08</minvio.version>
     </properties>
 
     <build>

@@ -19,7 +19,7 @@ public class Plasma extends MinvioApp {
 
     public static void main(String... args) {
         MinvioApp app = new Plasma();
-        app.start(new BasicDisplayAwt(400, 400), "Plasma", 60);
+        app.start(400, 400, "Plasma", 60);
     }
 
     @Override
@@ -30,20 +30,21 @@ public class Plasma extends MinvioApp {
     }
 
     @Override
-    public void draw(DrawingContext dc, double delta) {
+    public void draw(double delta) {
         int cellSize = 5;
         double scale = 0.05;
         scrollPosX += delta * 0.5;
         scrollPosY += delta * 0.2;
 
-        for (int y = 0; y < dc.getHeight() / cellSize; y++) {
-            for (int x = 0; x < dc.getWidth() / cellSize; x++) {
+        for (int y = 0; y < getHeight() / cellSize; y++) {
+            for (int x = 0; x < getWidth() / cellSize; x++) {
 
                 double noise = noise(scrollPosX + (x * scale), scrollPosY + (y * scale), scrollPosX);
 
-                setColourFromNoise(dc, noise);
+                setColourFromNoise(getDrawingContext(), noise);
 
-                dc.drawFilledRect(x * cellSize, y * cellSize, cellSize, cellSize);
+                //dc.drawFilledRect(x * cellSize, y * cellSize, cellSize, cellSize);
+                drawFilledRect(x * cellSize, y * cellSize, cellSize, cellSize);
             }
         }
 

@@ -24,7 +24,7 @@ public class Ribbons extends MinvioApp {
 
     public static void main(String... args) {
         MinvioApp app = new Ribbons();
-        app.start(new BasicDisplayAwt(400, 400), "Ropes", 30);
+        app.start(400, 400, "Ropes", 30);
     }
 
     @Override
@@ -62,7 +62,7 @@ public class Ribbons extends MinvioApp {
     }
 
     @Override
-    public void draw(DrawingContext dc, double delta) {
+    public void draw(double delta) {
 
         double speed = 2.0;
 
@@ -74,18 +74,18 @@ public class Ribbons extends MinvioApp {
             position.x -= tangent.y * speed;
             position.y += tangent.x * speed;
             spinAngle += 0.05;
-            drawRibbonSegment(dc, position, tangent, spinAngle);
+            drawRibbonSegment(getDrawingContext(), position, tangent, spinAngle);
 
             runLength -= 0.01;
             if (runLength < 0) {
-                setupNewRibbon(dc);
+                setupNewRibbon(getDrawingContext());
 
             }
         }
 
         fadeTimer += delta;
         if (fadeTimer > 0.1) {
-            dc.cls(new Color(0, 0, 0, 5));
+            cls(new Color(0, 0, 0, 5));
             fadeTimer = 0;
         }
     }

@@ -31,7 +31,7 @@ public class BucketListExample extends MinvioApp {
 
     public static void main(String... args) {
         MinvioApp app = new BucketListExample();
-        app.start(new BasicDisplayAwt(800, 800), "", 30);
+        app.start(new BasicDisplayAwt(800, 800), "Bucket List Example", 30);
     }
 
 
@@ -61,14 +61,14 @@ public class BucketListExample extends MinvioApp {
     }
 
     @Override
-    public void draw(DrawingContext dc, double delta) {
+    public void draw(double delta) {
 
         if (getBasicDisplay().getMouseButtonLeft())
-            dc.cls(new Color(14, 3, 6, 5));
+            cls(new Color(14, 3, 6, 5));
         else
-            dc.cls(Color.BLACK);
+            cls(Color.BLACK);
 
-        dc.setDrawColor(Color.lightGray);
+        setDrawColor(Color.lightGray);
 
 
         tick(getBasicDisplay());
@@ -77,16 +77,16 @@ public class BucketListExample extends MinvioApp {
         // Draw summary grid
         List<Integer[]> bucketSummary = bucketList.getBucketSummary();
         int cellSize = bucketList.getCellSize();
-        dc.setDrawColor(new Color(64, 31, 31));
+        setDrawColor(new Color(64, 31, 31));
         for (Integer[] integers : bucketSummary) {
             if (integers[2] == 0) continue;
-            dc.drawRect(integers[0] - (cellSize / 2), integers[1] - (cellSize / 2), cellSize, cellSize);
+            drawRect(integers[0] - (cellSize / 2), integers[1] - (cellSize / 2), cellSize, cellSize);
         }
 
         // Draw particles
-        dc.setDrawColor(new Color(230, 215, 186));
+        setDrawColor(new Color(230, 215, 186));
         for (Position point : points) {
-            dc.drawPoint((int) point.x, (int) point.y);
+            drawPoint((int) point.x, (int) point.y);
         }
     }
 

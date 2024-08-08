@@ -17,7 +17,7 @@ class PointListProcessorExample extends MinvioApp {
     public static void main(String... args) {
         MinvioApp app = new PointListProcessorExample();
         // Start the app running with a window size of 200x200 pixels, at 60 frames per second.
-        app.start(new BasicDisplayAwt(200, 200), "PointListProcessorExample", 60);
+        app.start(200, 200, "PointListProcessorExample", 60);
     }
 
     @Override
@@ -28,11 +28,9 @@ class PointListProcessorExample extends MinvioApp {
     }
 
     @Override
-    public void draw(DrawingContext dc, double delta) {
+    public void draw(double delta) {
 
-        BasicUtils.pointListProcessor(dc, points, (bd1, p) -> {
-            dc.drawCircle(p.x, p.y, 5);
-        });
+        BasicUtils.pointListProcessor(this, points, (bd1, p) -> drawCircle(p.x, p.y, 5));
 
     }
 }

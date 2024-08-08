@@ -18,7 +18,7 @@ public class AnchorExample extends MinvioApp {
 
     public static void main(String[] args) {
         MinvioApp app = new AnchorExample();
-        app.start(new BasicDisplayAwt(250, 250), "Anchor Example", 60);
+        app.start(250, 250, "Anchor Example", 60);
     }
 
     @Override
@@ -52,18 +52,18 @@ public class AnchorExample extends MinvioApp {
     }
 
     @Override
-    public void draw(DrawingContext dc, double delta) {
-        dc.cls(background);
+    public void draw(double delta) {
+        cls(background);
         anchorManager.update(getBasicDisplay());
 
 
-        dc.setDrawColor(new Color(225, 209, 118));
+        setDrawColor(new Color(225, 209, 118));
 
         List<Point> anchors = anchorManager.getAnchors();
         for (int i = 0; i < anchors.size() - 1; i++) {
-            dc.drawLine(anchors.get(i), anchors.get(i + 1));
+            drawLine(anchors.get(i), anchors.get(i + 1));
         }
 
-        anchorManager.draw(dc);
+        anchorManager.draw(getDrawingContext());
     }
 }

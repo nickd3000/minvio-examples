@@ -26,16 +26,16 @@ class CubeWave extends MinvioApp {
 
     public static void main(String... args) {
         MinvioApp app = new CubeWave();
-        app.start(new BasicDisplayAwt(400, 400), "Cube Wave", FPS);
+        app.start(400, 400, "Cube Wave", FPS);
     }
 
     @Override
-    public void draw(DrawingContext dc, double delta) {
-        dc.cls(backCol);
+    public void draw(double delta) {
+        cls(backCol);
         time += delta * 2;
 
-        drawColumns(dc, 5, 200 + 45);
-        drawColumns(dc, 5, 200 - 45);
+        drawColumns(getDrawingContext(), 5, 200 + 45);
+        drawColumns(getDrawingContext(), 5, 200 - 45);
     }
 
     public static void drawColumns(DrawingContext dc, int xx, int yy) {

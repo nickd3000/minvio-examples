@@ -24,7 +24,7 @@ public class MinvioAppTimingTest extends MinvioApp {
 
     public static void main(String... args) {
         MinvioApp app = new MinvioAppTimingTest();
-        app.start(new BasicDisplayAwt(600, 400), "MinvioAppTimingTest", 30);
+        app.start(600, 400, "MinvioAppTimingTest", 30);
     }
 
     @Override
@@ -39,21 +39,21 @@ public class MinvioAppTimingTest extends MinvioApp {
     }
 
     @Override
-    public void draw(DrawingContext dc, double delta) {
+    public void draw(double delta) {
 
         angles[1] += rotationSpeed * delta;
         drawRollingAverage.add(delta);
 
-        dc.cls(Color.BLUE);
-        dc.setDrawColor(Color.YELLOW);
-        dc.drawText("Update delta average (In seconds) " + formatter.format(updateRollingAverage.getAverage()), 20, 30);
-        dc.drawText("Draw delta average (In seconds)   " + formatter.format(drawRollingAverage.getAverage()), 20, 60);
+        cls(Color.BLUE);
+        setDrawColor(Color.YELLOW);
+        drawText("Update delta average (In seconds) " + formatter.format(updateRollingAverage.getAverage()), 20, 30);
+        drawText("Draw delta average (In seconds)   " + formatter.format(drawRollingAverage.getAverage()), 20, 60);
 
         for (int i = 0; i < 2; i++) {
             double radius = 80 + (i * 20);
             int x = (int) (150 + Math.sin(angles[i]) * radius);
             int y = (int) (150 + Math.cos(angles[i]) * radius);
-            dc.drawFilledCircle(x, y, 10);
+            drawFilledCircle(x, y, 10);
         }
     }
 

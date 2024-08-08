@@ -35,23 +35,23 @@ public class PointExampleApp extends MinvioApp {
     }
 
     @Override
-    public void draw(DrawingContext dc, double delta) {
+    public void draw(double delta) {
         // Get mouse position as a Point.
         Point mousePos = getBasicDisplay().getMousePoint();
 
         // Clear window.
-        dc.cls(colBackground);
+        cls(colBackground);
 
         // Draw lines.
-        dc.setDrawColor(colLines);
+        setDrawColor(colLines);
         for (Point p : points) {
-            dc.drawLine(mousePos, p);
+            drawLine(mousePos, p);
         }
 
         // Draw dots.
-        dc.setDrawColor(colDots);
+        setDrawColor(colDots);
         for (Point p : points) {
-            dc.drawFilledCircle(p, 3);
+            drawFilledCircle(p, 3);
         }
 
         BasicUtils.drawCursorPosition(getBasicDisplay(), 5, 5);

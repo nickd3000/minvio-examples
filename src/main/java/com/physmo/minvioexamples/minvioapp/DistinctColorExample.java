@@ -15,16 +15,16 @@ class DistinctColorExample extends MinvioApp {
 
     public static void main(String... args) {
         MinvioApp app = new DistinctColorExample();
-        app.start(new BasicDisplayAwt(400, 400), "Distinct Color Example", 30);
+        app.start(400, 400, "Distinct Color Example", 30);
     }
 
     @Override
-    public void draw(DrawingContext dc, double delta) {
+    public void draw(double delta) {
         int numRows;
         int space;
         int halfSpace;
 
-        dc.cls(Color.GRAY);
+        cls(Color.GRAY);
         numRows = 5 + (getMouseX() / 20);
         if (numRows < 1) numRows = 1;
         space = 400 / numRows;
@@ -33,8 +33,8 @@ class DistinctColorExample extends MinvioApp {
 
         for (int y = 0; y < numRows; y++) {
             for (int x = 0; x < numRows; x++) {
-                dc.setDrawColor(Utils.getDistinctColor(x + (y * numRows), saturation));
-                dc.drawFilledCircle(halfSpace + x * space, halfSpace + y * space, halfSpace);
+                setDrawColor(Utils.getDistinctColor(x + (y * numRows), saturation));
+                drawFilledCircle(halfSpace + x * space, halfSpace + y * space, halfSpace);
             }
         }
     }

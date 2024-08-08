@@ -14,18 +14,18 @@ class SaveScreenshotExample extends MinvioApp {
     public static void main(String... args) {
         MinvioApp app = new SaveScreenshotExample();
         // Start the app running with a window size of 200x200 pixels, at 60 frames per second.
-        app.start(new BasicDisplayAwt(200, 200), "Save Screenshot Example", 60);
+        app.start(200, 200, "Save Screenshot Example", 60);
     }
 
     @Override
-    public void draw(DrawingContext dc, double delta) {
-        dc.cls(Color.LIGHT_GRAY);
-        dc.setDrawColor(Color.WHITE);
-        dc.drawFilledRect(75, 75, 50, 50);
-        dc.setDrawColor(Color.BLUE);
-        dc.drawCircle(100, 100, 70);
-        dc.drawText("X:" + getMouseX() + " Y:" + getMouseY(), 10, 190);
-        dc.drawText("Tick :" + getFps(), 10, 160);
+    public void draw(double delta) {
+        cls(Color.LIGHT_GRAY);
+        setDrawColor(Color.WHITE);
+        drawFilledRect(75, 75, 50, 50);
+        setDrawColor(Color.BLUE);
+        drawCircle(100, 100, 70);
+        drawText("X:" + getMouseX() + " Y:" + getMouseY(), 10, 190);
+        drawText("Tick :" + getFps(), 10, 160);
 
         if (!saved) {
             String filePath = "";

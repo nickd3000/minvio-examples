@@ -14,7 +14,7 @@ public class GradientExample extends MinvioApp {
 
     public static void main(String... args) {
         MinvioApp app = new GradientExample();
-        app.start(new BasicDisplayAwt(200, 200), "Gradient Example", 30);
+        app.start(200, 200, "Gradient Example", 30);
     }
 
     @Override
@@ -28,16 +28,16 @@ public class GradientExample extends MinvioApp {
     }
 
     @Override
-    public void draw(DrawingContext dc, double delta) {
+    public void draw(double delta) {
 
-        for (int y = 0; y < dc.getHeight(); y++) {
-            Color color = gradient.getColor((double) y / (double) dc.getHeight());
-            dc.setDrawColor(color);
-            dc.drawFilledRect(0, y, dc.getWidth(), 1);
+        for (int y = 0; y < getHeight(); y++) {
+            Color color = gradient.getColor((double) y / (double) getHeight());
+            setDrawColor(color);
+            drawFilledRect(0, y, getWidth(), 1);
 
             // Draw the sun for fun.
-            if (y == dc.getHeight() / 2) {
-                dc.drawFilledCircle(dc.getHeight() / 2, dc.getHeight() / 2, 50);
+            if (y == getHeight() / 2) {
+                drawFilledCircle(getHeight() / 2, getHeight() / 2, 50);
             }
         }
 

@@ -18,7 +18,7 @@ public class GasketApp extends MinvioApp {
 
     public static void main(String... args) {
         MinvioApp app = new GasketApp();
-        app.start(new BasicDisplayAwt(400, 400), "Gasket", 30);
+        app.start(400, 400, "Gasket", 30);
     }
 
     @Override
@@ -29,7 +29,7 @@ public class GasketApp extends MinvioApp {
     }
 
     @Override
-    public void draw(DrawingContext dc, double delta) {
+    public void draw(double delta) {
         for (int i = 0; i < 50; i++) {
             loopCount++;
 
@@ -39,11 +39,11 @@ public class GasketApp extends MinvioApp {
             y = (y + pointList[(pointIndex * 2) + 1]) / 2;
 
             // Draw the point.
-            dc.drawFilledRect((int) (x * 400), (int) (y * 400), 2, 2);
+            drawFilledRect((int) (x * 400), (int) (y * 400), 2, 2);
 
             // Chose a random distinct colour every so often.
             if (loopCount % 50000 == 0)
-                dc.setDrawColor(Utils.getDistinctColor((int) (Math.random() * 100), 0.7));
+                setDrawColor(Utils.getDistinctColor((int) (Math.random() * 100), 0.7));
         }
     }
 

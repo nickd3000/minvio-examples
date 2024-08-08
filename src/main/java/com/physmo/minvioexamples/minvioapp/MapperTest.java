@@ -14,23 +14,23 @@ class MapperTest extends MinvioApp {
 
     public static void main(String... args) {
         MinvioApp app = new MapperTest();
-        app.start(new BasicDisplayAwt(400, 400), "Mapper Test", 60);
+        app.start(400, 400, "Mapper Test", 60);
     }
 
     @Override
-    public void draw(DrawingContext dc, double delta) {
+    public void draw(double delta) {
         double x = getMouseX();
         double y = getMouseY();
 
         double mappedX = BasicUtils.mapper(x, 0, 400, 100, 300);
         double mappedY = BasicUtils.mapper(y, 0, 400, 100, 300);
 
-        dc.cls(backgroundColour);
-        dc.setDrawColor(foregroundColour);
-        dc.drawRect(0, 0, 400 - 1, 400 - 1);
-        dc.drawRect(100, 100, 200, 200);
-        dc.drawLine(200, 200, mappedX, mappedY, 2);
-        dc.drawCircle(mappedX, mappedY, 10);
+        cls(backgroundColour);
+        setDrawColor(foregroundColour);
+        drawRect(0, 0, 400 - 1, 400 - 1);
+        drawRect(100, 100, 200, 200);
+        drawLine(200, 200, mappedX, mappedY, 2);
+        drawCircle(mappedX, mappedY, 10);
 
     }
 }

@@ -24,7 +24,7 @@ class NoseStyles extends MinvioApp {
 
     public static void main(String... args) {
         MinvioApp app = new NoseStyles();
-        app.start(new BasicDisplayAwt(400, 400), "Matrix Drawer Example", 30);
+        app.start(400, 400, "Matrix Drawer Example", 30);
     }
 
     @Override
@@ -44,10 +44,10 @@ class NoseStyles extends MinvioApp {
 
 
     @Override
-    public void draw(DrawingContext dc, double delta) {
+    public void draw(double delta) {
         time += delta;
 
-        matrixDrawer.draw(dc, 0, 0, 2, time, (x, y, a, d, t) -> {
+        matrixDrawer.draw(this, 0, 0, 2, time, (x, y, a, d, t) -> {
             double xx = PerlinNoise.noise(x * 4, y * 4, t + 2.5);
             double yy = PerlinNoise.noise(x * 4, y * 4, t + 2.5);
             return PerlinNoise.noise((x + xx) * 2, (y + yy) * 2, t);
@@ -55,15 +55,14 @@ class NoseStyles extends MinvioApp {
             //return ((1.0 + Math.sin(t * 2 + a * 6)) + (1.0 + Math.cos(t * 5 + d * 6 + a * 3))) * 0.25;
         }, gradients.get(0));
 
-        matrixDrawer.draw(dc, 200, 0, 2, time, (x, y, a, d, t) -> {
-            return (1.0 + Math.sin(a * 2 + d * 2 + (t * -3))) / 2;
-        }, gradients.get(1));
+        matrixDrawer.draw(this, 200, 0, 2, time, (x, y, a, d, t) ->
+                (1.0 + Math.sin(a * 2 + d * 2 + (t * -3))) / 2, gradients.get(1));
 
-        matrixDrawer.draw(dc, 0, 200, 2, time, (x, y, a, d, t) -> {
+        matrixDrawer.draw(this, 0, 200, 2, time, (x, y, a, d, t) -> {
             return (1.0 + Math.sin(x * 4 + d * 4 + t * 2 + y)) / 2;
         }, null); // We can supply null if we don't want to use a gradient.
 
-        matrixDrawer.draw(dc, 200, 200, 2, time, (x, y, a, d, t) -> {
+        matrixDrawer.draw(this, 200, 200, 2, time, (x, y, a, d, t) -> {
             return ((Math.sin(t) + y + d) % 0.5) > 0.2 ? 1 : 0;
         }, gradients.get(3));
     }

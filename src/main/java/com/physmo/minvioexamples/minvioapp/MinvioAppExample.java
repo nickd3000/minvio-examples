@@ -12,15 +12,15 @@ public class MinvioAppExample extends MinvioApp {
 
     public static void main(String... args) {
         MinvioApp app = new MinvioAppExample();
-        app.start(new BasicDisplayAwt(600, 300), "Minvio App Example", 30);
+        app.start(600, 300);
     }
 
     @Override
-    public void draw(DrawingContext dc, double delta) {
+    public void draw(double delta) {
         x++;
         if (x > 200) x = 0;
-        dc.cls(new Color(207, 198, 179));
-        dc.setDrawColor(new Color(17, 52, 69, 215));
-        dc.drawText("Hello, World", x, 100);
+        cls(new Color(207, 198, 179));
+        setDrawColor(new Color(17, 52, 69, 215));
+        drawText("Hello, World", x, 100);
     }
 }

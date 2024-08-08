@@ -14,29 +14,29 @@ class MouseButtonExample extends MinvioApp {
 
     public static void main(String... args) {
         MinvioApp app = new MouseButtonExample();
-        app.start(new BasicDisplayAwt(400, 400), "Mouse Button Example", 60);
+        app.start(400, 400, "Mouse Button Example", 60);
     }
 
     @Override
-    public void draw(DrawingContext dc, double delta) {
-        dc.cls(Color.lightGray);
+    public void draw(double delta) {
+        cls(Color.lightGray);
 
         // Draw rectangles representing mouse buttons.
-        int span = dc.getWidth() / 3;
-        int pad = (getMouseX() * 50 / dc.getWidth());
+        int span = getWidth() / 3;
+        int pad = (getMouseX() * 50 / getWidth());
         for (int i = 0; i < 3; i++) {
 
-            if (i == 0 && getBasicDisplay().getMouseButtonLeft()) dc.setDrawColor(colOn);
-            else if (i == 1 && getBasicDisplay().getMouseButtonMiddle()) dc.setDrawColor(colOn);
-            else if (i == 2 && getBasicDisplay().getMouseButtonRight()) dc.setDrawColor(colOn);
-            else dc.setDrawColor(colOff);
+            if (i == 0 && getBasicDisplay().getMouseButtonLeft()) setDrawColor(colOn);
+            else if (i == 1 && getBasicDisplay().getMouseButtonMiddle()) setDrawColor(colOn);
+            else if (i == 2 && getBasicDisplay().getMouseButtonRight()) setDrawColor(colOn);
+            else setDrawColor(colOff);
 
-            dc.drawFilledRect((i * span) + pad, pad, (span) - (pad * 2), (dc.getHeight()) - pad * 2);
+            drawFilledRect((i * span) + pad, pad, (span) - (pad * 2), (getHeight()) - pad * 2);
         }
 
         // Draw the message.
-        dc.setFont(15);
-        dc.setDrawColor(Color.black);
-        dc.drawText("Click Left, Middle and Right mouse button.", 40, dc.getHeight() - 30);
+        setFont(15);
+        setDrawColor(Color.black);
+        drawText("Click Left, Middle and Right mouse button.", 40, getHeight() - 30);
     }
 }

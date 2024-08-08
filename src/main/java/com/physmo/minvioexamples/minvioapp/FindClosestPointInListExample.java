@@ -22,7 +22,7 @@ public class FindClosestPointInListExample extends MinvioApp {
     public static void main(String... args) {
         MinvioApp app = new FindClosestPointInListExample();
         // Start the app running with a window size of 200x200 pixels, at 60 frames per second.
-        app.start(new BasicDisplayAwt(400, 400), "Find Closest Point In List", 60);
+        app.start(400, 400, "Find Closest Point In List", 60);
     }
 
 
@@ -34,16 +34,16 @@ public class FindClosestPointInListExample extends MinvioApp {
     }
 
     @Override
-    public void draw(DrawingContext dc, double delta) {
-        dc.cls(backgroundColor);
+    public void draw(double delta) {
+        cls(backgroundColor);
 
         int closestPointIndex = BasicUtils.findClosestPointInList(points, getBasicDisplay().getMousePoint(), 400);
 
         for (int i = 0; i < points.size(); i++) {
-            if (i == closestPointIndex) dc.setDrawColor(col2);
-            else dc.setDrawColor(col1);
+            if (i == closestPointIndex) setDrawColor(col2);
+            else setDrawColor(col1);
 
-            dc.drawFilledCircle(points.get(i), 5);
+            drawFilledCircle(points.get(i), 5);
         }
 
     }

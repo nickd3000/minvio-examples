@@ -23,11 +23,11 @@ class KeyboardExample extends MinvioApp {
 
     public static void main(String... args) {
         MinvioApp app = new KeyboardExample();
-        app.start(new BasicDisplayAwt(400, 400), "Keyboard Example", 60);
+        app.start(400, 400, "Keyboard Example", 60);
     }
 
     @Override
-    public void draw(DrawingContext dc, double delta) {
+    public void draw(double delta) {
 
         getBasicDisplay().tickInput();
         int[] keyStates = getBasicDisplay().getKeyState();
@@ -72,12 +72,12 @@ class KeyboardExample extends MinvioApp {
         }
 
         // Clear screen.
-        dc.cls(colorBackGround);
+        cls(colorBackGround);
 
         // Draw text.
-        dc.setDrawColor(colorText1);
-        dc.drawText("WASD", (int) x, (int) y);
-        dc.setDrawColor(colorText2);
-        dc.drawText("Press the WASD keys to move", 10, 30);
+        setDrawColor(colorText1);
+        drawText("WASD", (int) x, (int) y);
+        setDrawColor(colorText2);
+        drawText("Press the WASD keys to move", 10, 30);
     }
 }

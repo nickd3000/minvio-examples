@@ -59,8 +59,8 @@ public class EcsExample extends MinvioApp {
     }
 
     @Override
-    public void draw(DrawingContext dc, double delta) {
-        dc.cls(new Color(150, 150, 150, 89));
-        entitySystem.drawAll(dc, delta);
+    public void draw(double delta) {
+        cls(new Color(150, 150, 150, 89));
+        entitySystem.drawAll(getDrawingContext(), delta);
     }
 }

@@ -18,7 +18,7 @@ public class Life extends MinvioApp {
 
     public static void main(String[] args) {
         MinvioApp app = new Life();
-        app.start(new BasicDisplayAwt(400, 400), "Matrix Drawer Example", 30);
+        app.start(400, 400, "Matrix Drawer Example", 30);
     }
 
     @Override
@@ -43,7 +43,7 @@ public class Life extends MinvioApp {
     }
 
     @Override
-    public void draw(DrawingContext dc, double delta) {
+    public void draw(double delta) {
         //if (panel1 == null) return;
 
         DrawingContext dc1 = panel1.getDc();
@@ -56,6 +56,6 @@ public class Life extends MinvioApp {
         panel1.setDirty(true);
 
         guiContext.tick();
-        guiContext.drawAll(dc);
+        guiContext.drawAll(getDrawingContext());
     }
 }

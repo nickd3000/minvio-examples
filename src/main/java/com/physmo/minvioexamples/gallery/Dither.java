@@ -20,12 +20,12 @@ public class Dither extends MinvioApp {
 
     public static void main(String[] args) {
         MinvioApp app = new Dither();
-        app.start(new BasicDisplayAwt(600, 600), "Dither", 20);
+        app.start(600, 600, "Dither", 20);
 
     }
 
     @Override
-    public void draw(DrawingContext dc, double delta) {
+    public void draw(double delta) {
 
     }
 }
